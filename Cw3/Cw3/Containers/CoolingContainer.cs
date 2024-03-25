@@ -20,7 +20,8 @@ public class CoolingContainer: Container
     }; 
 
     public CoolingContainer(double cargoWeight, double height, double depth, 
-        double maxWeight, PossibleProducts products, double temp) : base(cargoWeight, height, depth, maxWeight)
+        double maxWeight, PossibleProducts products, double temp,double selfWeight) 
+        : base(cargoWeight, height, depth, maxWeight,selfWeight)
     {
         Products = products;
         Temp = temp;
@@ -43,5 +44,12 @@ public class CoolingContainer: Container
         }
         
         base.Load(cargoWeight);
+    }
+
+    public override string ToString()
+    {
+        return base.ToString()+"\n Serial Number: "+SerialNumber+
+               "\nProduct: "+Products+
+               "\nTemperature: "+Temp;
     }
 }

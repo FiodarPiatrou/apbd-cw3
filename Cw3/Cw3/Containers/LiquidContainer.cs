@@ -6,8 +6,8 @@ public class LiquidContainer : Container, IHazardNotifier
 {
     private bool dangerous;
 
-    public LiquidContainer(double cargoWeight, double height, double depth, double maxWeight, bool isDangerous)
-        : base(cargoWeight, height, depth, maxWeight)
+    public LiquidContainer(double cargoWeight, double height, double depth, double maxWeight, bool isDangerous,double self)
+        : base(cargoWeight, height, depth, maxWeight,self)
     {
         Dangerous = isDangerous;
         SerialNumber = "KON-L-" + Number;
@@ -26,6 +26,11 @@ public class LiquidContainer : Container, IHazardNotifier
             HazardNotification();
         }
         base.Load(cargoWeight);
+    }
+
+    public override string ToString()
+    {
+        return base.ToString()+"\nSerial Number:"+SerialNumber;
     }
 
     public void HazardNotification()

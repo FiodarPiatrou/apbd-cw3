@@ -13,8 +13,9 @@ public abstract class Container: IContainer
     private string _serialNumber;
     private static int number=0;
 
-    protected Container(double cargoWeight, double height, double depth, double maxWeight)
+    protected Container(double cargoWeight, double height, double depth, double maxWeight, double selfWeight)
     {
+        SelfWeight = selfWeight;
         CargoWeight = cargoWeight;
         Height = height;
         Depth = depth;
@@ -40,7 +41,18 @@ public abstract class Container: IContainer
         {
             throw new OverfillException();
         }
-        CargoWeight = cargoWeight;
+        CargoWeight += cargoWeight;
         
+    }
+
+    public double SelfWeight { get; set; }
+
+    public override string ToString()
+    {
+        return "Weight: "+SelfWeight+
+               "\nCurrent load: "+CargoWeight+
+               "\nMax load: "+MaxWeight+
+               "\nHeight: "+Height+
+               "\nDepth: "+Depth;
     }
 }
